@@ -24,3 +24,4 @@ bin/*
 examples*
 
 .gitlab-ci.yml
+.DS_Store

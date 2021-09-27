@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Define colors
 RED='\033[0;31m'
@@ -30,7 +30,7 @@ requiredver="3.13"
 
 # default compiler
 CC="gcc"
-CXX="g++"
+CXX="g++-11"
 
 # default cmake generator
 CMAKE_GENERATOR="Unix Makefiles"
@@ -437,7 +437,7 @@ if [ $CXX = "icc" ]; then
     CXXFLAGS="$CXXFLAGS -I/usr/include/x86_64-linux-gnu/c++/8/"
 
 # gnu
-elif [ $CXX = "g++" ]; then
+elif [ $CXX = "g++-11" ]; then
     if [ $CO = "debug" ]; then
 	    CXXFLAGS="-O1 -g3 -Wall"
             CXXFLAGS="$CXXFLAGS -Wno-unused-function -Wno-sign-compare -Wno-unused-but-set-variable -Wno-comment -Wno-unknown-pragmas -Wno-maybe-uninitialized"
@@ -454,7 +454,7 @@ elif [ $CXX = "g++" ]; then
         echo "No valid option chosen"
         exit 1
     fi
-    CXXFLAGS="$CXXFLAGS -fuse-linker-plugin -fuse-ld=gold"
+    #CXXFLAGS="$CXXFLAGS -fuse-linker-plugin -fuse-ld=gold"
 
 # clang
 elif [ $CXX = "clang++" ]; then
@@ -514,16 +514,16 @@ set_envvar_POLARIS_str="export POLARIS_PATH=\"${current_path}\""
 if_POLARIS_str="if [[ \":"'$PATH'":\" != *\":"'${POLARIS_PATH}'"/bin:\"* ]]; then"
 # prepend this variable to PATH
 export_POLARIS_str="    export PATH=\""'${POLARIS_PATH}'"/bin:"'$PATH'"\""
-# check if these lines are already in .bashrc
-if ! grep -q "${set_envvar_POLARIS_str}" ${HOME}/.bashrc; then
-    echo -e "Add POLARIS install path to ~/.bashrc ..."
-    echo "${set_envvar_POLARIS_str}" >>${HOME}/.bashrc
-    echo "${if_POLARIS_str}" >>${HOME}/.bashrc
-    echo "${export_POLARIS_str}" >>${HOME}/.bashrc
-    echo "fi" >>${HOME}/.bashrc
-    echo "" >>${HOME}/.bashrc
+# check if these lines are already in .zshrc
+if ! grep -q "${set_envvar_POLARIS_str}" ${HOME}/.zshrc; then
+    echo -e "Add POLARIS install path to ~/.zshrc ..."
+    echo "${set_envvar_POLARIS_str}" >>${HOME}/.zshrc
+    echo "${if_POLARIS_str}" >>${HOME}/.zshrc
+    echo "${export_POLARIS_str}" >>${HOME}/.zshrc
+    echo "fi" >>${HOME}/.zshrc
+    echo "" >>${HOME}/.zshrc
 
-    source ${HOME}/.bashrc
+    source ${HOME}/.zshrc
     echo -e "... [${GREEN}done${NC}]"
     echo ""
     echo ""
@@ -535,15 +535,15 @@ set_envvar_FITS_str="export POLARIS_FITS_PATH=\""'${POLARIS_PATH}'"/lib/CCfits/b
 if_FITS_str="if [[ \":"'$LD_LIBRARY_PATH'":\" != *\":"'$POLARIS_FITS_PATH'":\"* ]]; then"
 # prepend this variable to LD_LIBRARY_PATH
 export_FITS_str="    export LD_LIBRARY_PATH=\""'$POLARIS_FITS_PATH'":"'$LD_LIBRARY_PATH'"\""
-if ! grep -q "${set_envvar_FITS_str}" ${HOME}/.bashrc; then
-    echo -e "Add FITS libraries install paths to ~/.bashrc ..."
-    echo "${set_envvar_FITS_str}" >>${HOME}/.bashrc
-    echo "${if_FITS_str}" >>${HOME}/.bashrc
-    echo "${export_FITS_str}" >>${HOME}/.bashrc
-    echo "fi" >>${HOME}/.bashrc
-    echo "" >>${HOME}/.bashrc
+if ! grep -q "${set_envvar_FITS_str}" ${HOME}/.zshrc; then
+    echo -e "Add FITS libraries install paths to ~/.zshrc ..."
+    echo "${set_envvar_FITS_str}" >>${HOME}/.zshrc
+    echo "${if_FITS_str}" >>${HOME}/.zshrc
+    echo "${export_FITS_str}" >>${HOME}/.zshrc
+    echo "fi" >>${HOME}/.zshrc
+    echo "" >>${HOME}/.zshrc
 
-    source ${HOME}/.bashrc
+    source ${HOME}/.zshrc
     echo -e "... [${GREEN}done${NC}]"
     echo ""
     echo ""
@@ -575,15 +575,15 @@ if [[ -d "tools" ]]; then
     if_TOOLS_str="if [[ \":"'$PATH'":\" != *\":"'$POLARISTOOLS_PATH'":\"* ]]; then"
     # prepend this variable to PATH
     export_TOOLS_str="    export PATH=\""'$POLARISTOOLS_PATH'":"'$PATH'"\""
-    if ! grep -q "${set_envvar_TOOLS_str}" ${HOME}/.bashrc; then
-        echo -e "Add PolarisTools install path to ~/.bashrc ..."
-        echo "${set_envvar_TOOLS_str}" >>${HOME}/.bashrc
-        echo "${if_TOOLS_str}" >>${HOME}/.bashrc
-        echo "${export_TOOLS_str}" >>${HOME}/.bashrc
-        echo "fi" >>${HOME}/.bashrc
-        echo "" >>${HOME}/.bashrc
+    if ! grep -q "${set_envvar_TOOLS_str}" ${HOME}/.zshrc; then
+        echo -e "Add PolarisTools install path to ~/.zshrc ..."
+        echo "${set_envvar_TOOLS_str}" >>${HOME}/.zshrc
+        echo "${if_TOOLS_str}" >>${HOME}/.zshrc
+        echo "${export_TOOLS_str}" >>${HOME}/.zshrc
+        echo "fi" >>${HOME}/.zshrc
+        echo "" >>${HOME}/.zshrc
 
-        source ${HOME}/.bashrc
+        source ${HOME}/.zshrc
         echo -e "... [${GREEN}done${NC}]"
         echo ""
         echo ""
