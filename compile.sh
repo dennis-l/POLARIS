@@ -42,7 +42,7 @@ CO="release"
 TARGET="host"
 
 # do not install fits libraries each time
-DO_FITS=false
+DO_FITS=true
 
 
 # ================================================================================ #
